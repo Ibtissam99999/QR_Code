@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <style name="BottomNavTextInactive">
+            <item name="android:textColor">@color/grey</item>
+        </style>
+
+        <style name="BottomNavTextActive">
+            <item name="android:textColor">@color/black</item>
+        </style>
+</resources>
