@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">QR Code</string>
+    <string name="import_text">Importer</string>
+    <string name="scanner">Scanner</string>
+    <string name="history">Historique</string>
+    <string name="create">Créer</string>
+    <string name="no_qr_codes">Aucun code QR scanné pour le moment</string>
+    <string name="open_qr">Ouvrir le scanner QR</string>
+    <string name="create_qr">Créer un code QR</string>
+    <string name="qr_code_type">Type de code QR</string>
+    <string name="what_qr_code">Quel type de code QR souhaitez-vous créer ?</string>
+    <string name="location">Emplacement</string>
+    <string name="url">URL</string>
+    <string name="email">E-mail</string>
+    <string name="text">Texte</string>
+    <string name="insert_text">Insérer du texte</string>
+    <string name="https">https://</string>
+    <string name="longtitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="recipient_s_email">E-mail du destinataire</string>
+    <string name="subject">Sujet</string>
+    <string name="insert_an_email">Insérer un e-mail</string>
+    <string name="open">Ouvrir</string>
+    <string name="share">Partager</string>
+</resources>
