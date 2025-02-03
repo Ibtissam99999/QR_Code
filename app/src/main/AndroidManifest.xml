@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
@@ -17,17 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activity.SelectedItemActivity"
+            android:exported="false" />
         <activity android:name=".activity.LocalisationActivity" />
         <activity android:name=".activity.TypeCodeActivity" />
         <activity android:name=".activity.UrlActivity" />
         <activity android:name=".activity.EmailActivity" />
         <activity android:name=".activity.TextActivity" />
-        <activity android:name=".activity.CreateActivity"/>
+        <activity android:name=".activity.CreateActivity" />
         <activity android:name=".activity.ScannerActivity" />
-        <activity android:name=".activity.HistoryActivity"/>
-
-
+        <activity android:name=".activity.HistoryActivity" />
         <activity
             android:name=".activity.SplashScreenActivity"
             android:exported="true"

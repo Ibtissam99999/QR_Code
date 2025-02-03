@@ -34,7 +34,14 @@ class HistoryActivity : AppCompatActivity() {
         clear = findViewById(R.id.clear)
 
         historyList.layoutManager = LinearLayoutManager(this)
-        adapter = HistoryAdapter(this, history_List)
+        adapter = HistoryAdapter(this, history_List) { selectedItem ->
+            val intent = Intent(this, SelectedItemActivity::class.java).apply {
+                putExtra("scanImage", selectedItem.qrCode)
+                putExtra("scanText", selectedItem.textQr)
+                putExtra("scanType", selectedItem.type)
+            }
+            startActivity(intent)
+        }
         historyList.adapter = adapter
 
         updateRecyclerView()
@@ -68,7 +75,7 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        bottomNavigationView.selectedItemId = R.id.scan
+        bottomNavigationView.selectedItemId = R.id.historic
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

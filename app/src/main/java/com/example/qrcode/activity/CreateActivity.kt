@@ -32,7 +32,14 @@ class CreateActivity : AppCompatActivity() {
         val createQrButton: View = findViewById(R.id.createqr)
 
         createList.layoutManager = LinearLayoutManager(this)
-        adapter = CreateAdapter(this, create_List)
+        adapter = CreateAdapter(this, create_List) { selectedItem ->
+            val intent = Intent(this, SelectedItemActivity::class.java).apply {
+                putExtra("scanImage", selectedItem.qrCode)
+                putExtra("scanText", selectedItem.textQr)
+                putExtra("scanType", selectedItem.type)
+            }
+            startActivity(intent)
+        }
         createList.adapter = adapter
 
         updateVisibility()

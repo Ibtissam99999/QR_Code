@@ -12,10 +12,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qrcode.R
 import com.example.qrcode.data.createData
+import com.example.qrcode.data.historyData
 
 class CreateAdapter(
     private val context: Context,
-    private val CreateList: MutableList<createData>
+    private val CreateList: MutableList<createData>,
+    private val onItemClick: (createData) -> Unit
 ) : RecyclerView.Adapter<CreateAdapter.CreateViewHolder>() {
 
     class CreateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -39,12 +41,7 @@ class CreateAdapter(
         holder.qrContentTextView.text = qrData.textQr
 
         holder.itemView.setOnClickListener {
-            try {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(qrData.textQr))
-                context.startActivity(intent)
-            } catch (e: Exception) {
-                Toast.makeText(context, "Unable to open: ${qrData.textQr}", Toast.LENGTH_SHORT).show()
-            }
+            onItemClick(qrData)
         }
     }
 

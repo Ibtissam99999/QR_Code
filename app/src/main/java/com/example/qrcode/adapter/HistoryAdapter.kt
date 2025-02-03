@@ -15,8 +15,10 @@ import com.example.qrcode.data.historyData
 
 class HistoryAdapter(
     private val context: Context,
-    private val historyDataList: MutableList<historyData>
-) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+    private val historyDataList: MutableList<historyData>,
+    private val onItemClick: (historyData) -> Unit
+) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>()
+{
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val qrImageView: ImageView = itemView.findViewById(R.id.qrImageView)
@@ -39,12 +41,7 @@ class HistoryAdapter(
         holder.qrContentTextView.text = qrData.textQr
 
         holder.itemView.setOnClickListener {
-            try {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(qrData.textQr))
-                context.startActivity(intent)
-            } catch (e: Exception) {
-                Toast.makeText(context, "Unable to open: ${qrData.textQr}", Toast.LENGTH_SHORT).show()
-            }
+            onItemClick(qrData)
         }
     }
 
