@@ -119,8 +119,13 @@ class ScannerActivity : AppCompatActivity() {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Configure la navigation en bas de l'application.
+=======
+    /*
+    cette fonction est pour affic
+>>>>>>> ca0dc5e7a4991de1dff7b3dc8fccfd876888c525
      */
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
