@@ -2,7 +2,9 @@ package com.example.qrcode.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -14,6 +16,7 @@ import com.example.qrcode.R
 import com.example.qrcode.adapter.HistoryAdapter
 import com.example.qrcode.list.history_List
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.io.ByteArrayOutputStream
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -35,11 +38,14 @@ class HistoryActivity : AppCompatActivity() {
 
         historyList.layoutManager = LinearLayoutManager(this)
         adapter = HistoryAdapter(this, history_List) { selectedItem ->
-            val intent = Intent(this, SelectedItemActivity::class.java).apply {
-                putExtra("scanImage", selectedItem.qrCode)
-                putExtra("scanText", selectedItem.textQr)
-                putExtra("scanType", selectedItem.type)
-            }
+            val bitmap=selectedItem.qrCode
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            val byteArray = stream.toByteArray()
+            val intent = Intent(this, SelectedItemActivity::class.java)
+            intent.putExtra("scanImage", byteArray)
+            intent.putExtra("scanText", selectedItem.textQr)
+            intent.putExtra("scanType", selectedItem.type)
             startActivity(intent)
         }
         historyList.adapter = adapter

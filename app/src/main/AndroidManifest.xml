@@ -22,9 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
-        <activity
-            android:name=".activity.SelectedItemActivity"
-            android:exported="false" />
+        <activity android:name=".activity.SelectedItemActivity" />
         <activity android:name=".activity.LocalisationActivity" />
         <activity android:name=".activity.TypeCodeActivity" />
         <activity android:name=".activity.UrlActivity" />

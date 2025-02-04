@@ -105,6 +105,9 @@ class ScannerActivity : AppCompatActivity() {
         }
     }
 
+    /*
+    cette fonction est pour affic
+     */
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView.selectedItemId = R.id.scan
@@ -175,7 +178,7 @@ class ScannerActivity : AppCompatActivity() {
     private fun showResultAfterDelay(resultText: String) {
         Handler(Looper.getMainLooper()).postDelayed({
             showBottomSheet(resultText)
-        }, 3000)
+        }, 2000)
     }
 
     @SuppressLint("InflateParams")
