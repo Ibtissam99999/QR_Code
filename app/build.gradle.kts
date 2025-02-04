@@ -1,6 +1,9 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.dokka)
+
 }
 
 android {
@@ -35,6 +38,8 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation(libs.gson)
     implementation (libs.code.scanner)
@@ -53,3 +58,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(kotlin("script-runtime"))
 }
+

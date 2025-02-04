@@ -3,6 +3,7 @@ agp = "8.6.0"
 codescanner = "2.1.0"
 codeScannerVersion = "2.3.0"
 core = "3.4.1"
+dokkaGradlePluginVersion = "1.8.10"
 gson = "2.10.1"
 kotlin = "1.9.0"
 coreKtx = "1.15.0"
@@ -25,6 +26,7 @@ code-scanner = { module = "com.github.yuriy-budiyev:code-scanner", version.ref =
 codescanner = { module = "com.budiyev.android:codescanner", version.ref = "codescanner" }
 core = { module = "com.google.zxing:core", version.ref = "core" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+jetbrains-dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokkaGradlePluginVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -40,4 +42,6 @@ firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "fireb
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+dokka ="prg.jetbrains.dokka:1.9.10"
 

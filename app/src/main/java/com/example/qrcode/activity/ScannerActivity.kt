@@ -39,12 +39,21 @@ import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import java.util.regex.Pattern
 
+/**
+ * Activity principale pour le scan de QR codes.
+ * Gère la caméra, l'importation d'images, et l'affichage des résultats.
+ */
+
 class ScannerActivity : AppCompatActivity() {
 
     private lateinit var codeScanner: CodeScanner
     private lateinit var importPic: TextView
     private lateinit var selectImageLauncher: ActivityResultLauncher<Intent>
     private val CAMERA_CODE = 102
+
+    /**
+     * Initialise l'activité et configure le scanner de QR codes.
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +78,7 @@ class ScannerActivity : AppCompatActivity() {
             selectImageLauncher.launch(intent)
         }
 
-        //Camera
+        // Vérifie les permissions de la caméra
         if (ContextCompat.checkSelfPermission(this,CAMERA) == PackageManager.PERMISSION_GRANTED
         ) {
             Toast.makeText(this,"Camera permission already agreed",Toast.LENGTH_LONG).show()
@@ -79,6 +88,11 @@ class ScannerActivity : AppCompatActivity() {
             )
         }
     }
+
+    /**
+     * Configure le scanner de QR codes.
+     * @param scannerView Vue utilisée pour afficher la prévisualisation de la caméra.
+     */
 
     private fun setupCodeScanner(scannerView: CodeScannerView) {
         codeScanner.camera = CodeScanner.CAMERA_BACK
@@ -105,6 +119,9 @@ class ScannerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Configure la navigation en bas de l'application.
+     */
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView.selectedItemId = R.id.scan
@@ -137,6 +154,11 @@ class ScannerActivity : AppCompatActivity() {
         super.onPause()
     }
 
+    /**
+     * Décode un QR code à partir d'une URI d'image.
+     * @param uri URI de l'image à analyser.
+     */
+
     private fun decodeQRCodeFromUri(uri: Uri) {
         try {
             val inputStream = contentResolver.openInputStream(uri)
@@ -158,6 +180,12 @@ class ScannerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Décode un QR code à partir d'un bitmap.
+     * @param bitmap Image contenant le QR code.
+     * @return Résultat du QR code ou null si non détecté.
+     */
+
     private fun decodeQRCodeFromBitmap(bitmap: Bitmap): Result? {
         val intArray = IntArray(bitmap.width * bitmap.height)
         bitmap.getPixels(intArray, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
@@ -172,11 +200,21 @@ class ScannerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Affiche le résultat après un léger délai.
+     * @param resultText Texte décodé du QR code.
+     */
+
     private fun showResultAfterDelay(resultText: String) {
         Handler(Looper.getMainLooper()).postDelayed({
             showBottomSheet(resultText)
-        }, 3000)
+        }, 2000)
     }
+
+    /**
+     * Affiche un BottomSheet avec le résultat du QR code.
+     * @param resultText Texte décodé du QR code.
+     */
 
     @SuppressLint("InflateParams")
     private fun showBottomSheet(resultText: String) {
