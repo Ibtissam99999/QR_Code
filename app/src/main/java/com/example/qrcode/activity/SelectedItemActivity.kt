@@ -2,11 +2,7 @@ package com.example.qrcode.activity
 
 
 import android.content.Intent
-<<<<<<< HEAD
-import android.graphics.Bitmap
-=======
 import android.graphics.BitmapFactory
->>>>>>> ca0dc5e7a4991de1dff7b3dc8fccfd876888c525
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -22,7 +18,6 @@ import com.example.qrcode.R
  * Displays the scan result (text, image, type) and allows actions such as opening the content or sharing it.
  */
 class SelectedItemActivity : AppCompatActivity() {
-<<<<<<< HEAD
 
     // Views for displaying scan information
     private lateinit var scanText: TextView
@@ -36,9 +31,6 @@ class SelectedItemActivity : AppCompatActivity() {
      *
      * @param savedInstanceState The saved instance state bundle (if any).
      */
-    @SuppressLint("MissingInflatedId")
-=======
->>>>>>> ca0dc5e7a4991de1dff7b3dc8fccfd876888c525
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Enable edge-to-edge layout
@@ -46,29 +38,15 @@ class SelectedItemActivity : AppCompatActivity() {
 
         // Set the activity layout
         setContentView(R.layout.activity_selected_item)
-<<<<<<< HEAD
 
-        // Apply window insets to handle system bars (status and navigation bars)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         // Initialize the views
-        scanText = findViewById(R.id.text_result)
-        scanType = findViewById(R.id.text_result_type)
+        scanText = findViewById(R.id.text_res)
+        scanType = findViewById(R.id.text_resultType)
         scanImage = findViewById(R.id.scanView)
-        openButton = findViewById(R.id.button_open)
-        shareButton = findViewById(R.id.button_share)
-=======
+        openButton = findViewById(R.id.open)
+        shareButton = findViewById(R.id.share)
 
-       val  scanText: TextView = findViewById(R.id.text_res)
-        val scanType: TextView = findViewById(R.id.text_resultType)
-        val scanImage: ImageView = findViewById(R.id.scanView)
-        val openButton: Button = findViewById(R.id.open)
-        val shareButton: Button = findViewById(R.id.share)
->>>>>>> ca0dc5e7a4991de1dff7b3dc8fccfd876888c525
 
         // Get data passed through the Intent (QR code scan result)
         val text = intent.getStringExtra("scanText")
@@ -79,20 +57,14 @@ class SelectedItemActivity : AppCompatActivity() {
         scanText.text = text
         scanType.text = type
 
-<<<<<<< HEAD
-        // If an image URI is provided, display the image
-        if (!imageUri.isNullOrEmpty()) {
-            scanImage.setImageURI(Uri.parse(imageUri))
-        }
 
-        // Open button click listener to handle different QR code types
-=======
+        // If an image URI is provided, display the image
         if (imageUri !=null){
             val bitmap = BitmapFactory.decodeByteArray(imageUri, 0, imageUri.size)
             scanImage.setImageBitmap(bitmap)
         }
 
->>>>>>> ca0dc5e7a4991de1dff7b3dc8fccfd876888c525
+        // Open button click listener to handle different QR code types
         openButton.setOnClickListener {
             if (text != null && type != null) {
                 handleQRCode(text, type)

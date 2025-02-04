@@ -1,7 +1,7 @@
 package com.example.qrcode.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -13,6 +13,7 @@ import com.example.qrcode.R
 import com.example.qrcode.adapter.CreateAdapter
 import com.example.qrcode.list.create_List
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.io.ByteArrayOutputStream
 
 /**
  * Activity responsable de l'affichage et de la gestion des QR codes créés par l'utilisateur.
@@ -29,7 +30,7 @@ class CreateActivity : AppCompatActivity() {
      * Méthode appelée lors de la création de l'activité.
      * Initialise les vues et configure les actions des boutons.
      */
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
@@ -42,13 +43,16 @@ class CreateActivity : AppCompatActivity() {
 
         // Configuration du RecyclerView avec un LinearLayoutManager
         createList.layoutManager = LinearLayoutManager(this)
-        adapter = CreateAdapter(this, create_List) { selectedItem ->
-            // Démarrage de SelectedItemActivity avec les données du QR code sélectionné
-            val intent = Intent(this, SelectedItemActivity::class.java).apply {
-                putExtra("scanImage", selectedItem.qrCode)
-                putExtra("scanText", selectedItem.textQr)
-                putExtra("scanType", selectedItem.type)
-            }
+        adapter = CreateAdapter(this, create_List){ selectedItem ->
+            // Ouvrir l'activité des détails du QR code sélectionné
+            val bitmap=selectedItem.qrCode
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            val byteArray = stream.toByteArray()
+            val intent = Intent(this, SelectedItemActivity::class.java)
+            intent.putExtra("scanImage", byteArray)
+            intent.putExtra("scanText", selectedItem.textQr)
+            intent.putExtra("scanType", selectedItem.type)
             startActivity(intent)
         }
         createList.adapter = adapter

@@ -62,13 +62,14 @@ class ScannerActivity : AppCompatActivity() {
         importPic = findViewById(R.id.import_pic)
 
         codeScanner = CodeScanner(this, scannerView)
-        selectImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                result.data?.data?.let { uri ->
-                    decodeQRCodeFromUri(uri)
+        selectImageLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    result.data?.data?.let { uri ->
+                        decodeQRCodeFromUri(uri)
+                    }
                 }
             }
-        }
 
         setupCodeScanner(scannerView)
         setupBottomNavigation()
@@ -79,9 +80,9 @@ class ScannerActivity : AppCompatActivity() {
         }
 
         // Vérifie les permissions de la caméra
-        if (ContextCompat.checkSelfPermission(this,CAMERA) == PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(this, CAMERA) == PackageManager.PERMISSION_GRANTED
         ) {
-            Toast.makeText(this,"Camera permission already agreed",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Camera permission already agreed", Toast.LENGTH_LONG).show()
         } else {
             ActivityCompat.requestPermissions(
                 this, arrayOf(CAMERA), CAMERA_CODE
@@ -110,7 +111,11 @@ class ScannerActivity : AppCompatActivity() {
 
         codeScanner.errorCallback = ErrorCallback {
             runOnUiThread {
-                Toast.makeText(this, "Camera initialization error: ${it.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Camera initialization error: ${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -119,13 +124,8 @@ class ScannerActivity : AppCompatActivity() {
         }
     }
 
-<<<<<<< HEAD
     /**
      * Configure la navigation en bas de l'application.
-=======
-    /*
-    cette fonction est pour affic
->>>>>>> ca0dc5e7a4991de1dff7b3dc8fccfd876888c525
      */
     private fun setupBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)

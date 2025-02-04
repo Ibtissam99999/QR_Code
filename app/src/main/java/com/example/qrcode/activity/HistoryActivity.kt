@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -48,18 +47,13 @@ class HistoryActivity : AppCompatActivity() {
         // Configuration de la RecyclerView
         historyList.layoutManager = LinearLayoutManager(this)
         adapter = HistoryAdapter(this, history_List) { selectedItem ->
-<<<<<<< HEAD
             // Ouvrir l'activité des détails du QR code sélectionné
-            val intent = Intent(this, SelectedItemActivity::class.java)
-            intent.putExtra("scanImage", selectedItem.qrCode.toString())
-=======
             val bitmap=selectedItem.qrCode
             val stream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
             val byteArray = stream.toByteArray()
             val intent = Intent(this, SelectedItemActivity::class.java)
             intent.putExtra("scanImage", byteArray)
->>>>>>> ca0dc5e7a4991de1dff7b3dc8fccfd876888c525
             intent.putExtra("scanText", selectedItem.textQr)
             intent.putExtra("scanType", selectedItem.type)
             startActivity(intent)
